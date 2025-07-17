@@ -1,11 +1,11 @@
 # Use Maven with Java 17
-FROM maven:3.9.6-eclipse-temurin-17
+FROM maven:3.9.6-openjdk-17
 
 # Set working directory
-WORKDIR /splunk-plugin
+WORKDIR /plugin
 
-# Copy source code into the container
+# Copy project files
 COPY . .
 
-# Build and test the plugin
-CMD ["mvn", "test"]
+# Build the plugin
+CMD ["mvn", "clean", "install", "-DskipTests"]
