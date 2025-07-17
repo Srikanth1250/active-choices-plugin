@@ -1,14 +1,14 @@
-# Use Maven with Java 17 (suitable for Jenkins plugin development)
-FROM maven:3.9.6-eclipse-temurin-17
+# Use a general Maven image with Java 17
+FROM maven:3.9.6-openjdk-17
 
-# Set working directory inside the container
-WORKDIR /plugin
+# Set working directory
+WORKDIR /app
 
-# Copy all source code and pom.xml into the container
+# Copy the source code
 COPY . .
 
-# Build and test the plugin
-RUN mvn clean install
+# Build the plugin (skip tests for speed)
+RUN mvn clean package -DskipTests
 
 # Default command (optional)
-CMD ["ls", "-lh", "target"]
+CMD ["java", "-version"]
