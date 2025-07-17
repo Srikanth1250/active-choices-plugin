@@ -1,14 +1,14 @@
-# Use a general Maven image with Java 17
-FROM maven:3.9.6-openjdk-17
+# Use Maven with Java 17
+FROM maven:3.9.6-eclipse-temurin-17
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy the source code
+# Copy your Jenkins plugin source code into the container
 COPY . .
 
-# Build the plugin (skip tests for speed)
-RUN mvn clean package -DskipTests
+# Build the plugin (run tests too)
+RUN mvn clean install
 
-# Default command (optional)
-CMD ["java", "-version"]
+# Default command (you can override this)
+CMD ["ls", "-lh", "target"]
