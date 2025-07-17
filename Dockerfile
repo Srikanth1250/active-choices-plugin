@@ -1,14 +1,14 @@
-# Use Maven with Java 17
-FROM maven:3.9.6-openjdk-17
+# Use official Maven image with Java 17
+FROM maven:3.9.6-eclipse-temurin-17
 
-# Set working directory inside container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy everything into container
+# Copy all source files into the container
 COPY . .
 
-# Build the Maven project (skip tests to speed up build)
+# Build the plugin (skip tests to save time)
 RUN mvn clean install -DskipTests
 
-# Default command (optional; can be overridden)
+# Optional: Run tests by default when container starts
 CMD ["mvn", "test"]
