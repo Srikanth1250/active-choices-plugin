@@ -4,8 +4,8 @@ FROM maven:3.9.6-openjdk-17
 # Set working directory
 WORKDIR /plugin
 
-# Copy project files
+# Copy source
 COPY . .
 
-# Build the plugin
+# Run Maven build
 CMD ["mvn", "clean", "install", "-DskipTests"]
